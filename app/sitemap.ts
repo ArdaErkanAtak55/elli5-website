@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/content/site";
 import { posts } from "@/content/blog";
+import { services } from "@/content/services";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -16,6 +17,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: abs("/dijital-analiz"), lastModified: now, changeFrequency: "yearly", priority: 0.8 },
   ];
 
+  const serviceRoutes: MetadataRoute.Sitemap = services.map((s) => ({
+    url: abs(`/hizmetler/${s.id}`),
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.85,
+  }));
+
   const postRoutes: MetadataRoute.Sitemap = posts.map((p) => ({
     url: abs(`/blog/${p.slug}`),
     lastModified: new Date(p.date),
@@ -23,5 +31,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }));
 
-  return [...staticRoutes, ...postRoutes];
+  return [...staticRoutes, ...serviceRoutes, ...postRoutes];
 }

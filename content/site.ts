@@ -83,22 +83,22 @@ export const nav: NavItem[] = [
     children: [
       {
         label: "Mobil Uygulama Geliştirme",
-        href: "/hizmetler#mobil-uygulama",
+        href: "/hizmetler/mobil-uygulama",
         description: "iOS ve Android için uçtan uca çözümler",
       },
       {
         label: "Yapay Zeka & Öneri Sistemleri",
-        href: "/hizmetler#yapay-zeka",
+        href: "/hizmetler/yapay-zeka",
         description: "AI destekli öneri motorları ve veri analizi",
       },
       {
         label: "Web & Google İşletme",
-        href: "/hizmetler#web-google-isletme",
+        href: "/hizmetler/web-google-isletme",
         description: "Kurumsal web, SEO ve harita optimizasyonu",
       },
       {
         label: "Sosyal Medya & Marka",
-        href: "/hizmetler#sosyal-medya",
+        href: "/hizmetler/sosyal-medya",
         description: "Dijital vitrin yönetimi ve kreatif medya",
       },
     ],

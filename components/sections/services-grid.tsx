@@ -18,7 +18,7 @@ export function ServicesGrid() {
         {services.map((service, i) => (
           <Reveal key={service.id} as="article" delay={i * 70}>
             <Link
-              href={`/hizmetler#${service.id}`}
+              href={`/hizmetler/${service.id}`}
               className="group flex h-full flex-col rounded-card border border-line bg-white p-7 shadow-soft transition-all duration-200 hover:-translate-y-1 hover:border-line hover:shadow-card"
             >
               <span className="inline-flex size-12 items-center justify-center rounded-2xl bg-brand-tint text-brand transition-colors group-hover:bg-brand group-hover:text-white">

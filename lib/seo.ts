@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { site } from "@/content/site";
 import type { Faq } from "@/content/faq";
+import type { Service } from "@/content/services";
 
 export function absoluteUrl(path = "/") {
   return new URL(path, site.url).toString();
@@ -95,6 +96,29 @@ export function faqJsonLd(faqs: Faq[]) {
       name: f.q,
       acceptedAnswer: { "@type": "Answer", text: f.a },
     })),
+  };
+}
+
+export function serviceJsonLd(service: Service) {
+  const path = `/hizmetler/${service.id}`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: service.title,
+    name: `${service.title} — ${site.name}`,
+    description: service.intro,
+    url: absoluteUrl(path),
+    provider: {
+      "@type": "Organization",
+      name: site.legalName,
+      alternateName: site.name,
+      url: site.url,
+    },
+    areaServed: { "@type": "Country", name: site.areaServed },
+    audience: {
+      "@type": "Audience",
+      audienceType: service.audience,
+    },
   };
 }
 

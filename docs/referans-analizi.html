@@ -1,0 +1,821 @@
+<title>Prismind & Ajans10 Kıyası</title>
+<meta name="description" content="İki dijital ajans sitesinin yapı ve strateji analizi; Elli5 sitesinin nerede durduğu ve öncelikli aksiyonlar." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;450;500;600&family=JetBrains+Mono:wght@500;600&display=swap" />
+
+<style>
+  :root {
+    --ground: #fbfaf9;
+    --surface: #ffffff;
+    --surface-2: #f4f2f0;
+    --ink: #1b1b1b;
+    --ink-2: #4c4a48;
+    --muted: #6b6864;
+    --hair: #e7e3df;
+    --hair-strong: #d8d2cc;
+    --accent: #e3000f;
+    --accent-weak: #fdecec;
+    --mark-a: #1a55f9;   /* prismind */
+    --mark-b: #0e9c8c;   /* ajans10 */
+    --ok: #1c7a4e;
+    --ok-weak: #e6f2ea;
+    --warn: #a9700c;
+    --warn-weak: #f6eede;
+    --gap-weak: #f0eeec;
+
+    --maxw-prose: 46rem;
+    --maxw-wide: 61rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #151413;
+      --surface: #1d1c1b;
+      --surface-2: #232120;
+      --ink: #ece9e5;
+      --ink-2: #c4bfb8;
+      --muted: #9a958d;
+      --hair: #322e2b;
+      --hair-strong: #423d39;
+      --accent: #ff4030;
+      --accent-weak: #38211f;
+      --mark-a: #6d94ff;
+      --mark-b: #4fc7b8;
+      --ok: #52b985;
+      --ok-weak: #1c2a23;
+      --warn: #e0a54a;
+      --warn-weak: #2c2519;
+      --gap-weak: #201e1c;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #151413;
+    --surface: #1d1c1b;
+    --surface-2: #232120;
+    --ink: #ece9e5;
+    --ink-2: #c4bfb8;
+    --muted: #9a958d;
+    --hair: #322e2b;
+    --hair-strong: #423d39;
+    --accent: #ff4030;
+    --accent-weak: #38211f;
+    --mark-a: #6d94ff;
+    --mark-b: #4fc7b8;
+    --ok: #52b985;
+    --ok-weak: #1c2a23;
+    --warn: #e0a54a;
+    --warn-weak: #2c2519;
+    --gap-weak: #201e1c;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    font-feature-settings: "cv05", "cv08";
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: var(--maxw-wide);
+    margin: 0 auto;
+    padding: clamp(2.5rem, 6vw, 5rem) clamp(1.1rem, 4vw, 2.5rem) 6rem;
+  }
+
+  .prose { max-width: var(--maxw-prose); }
+
+  h1, h2, h3 {
+    font-family: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  h1 { font-size: clamp(1.9rem, 4.6vw, 2.7rem); font-weight: 800; line-height: 1.08; }
+  h2 { font-size: clamp(1.35rem, 3vw, 1.8rem); font-weight: 700; line-height: 1.18; }
+  h3 { font-size: 1.06rem; font-weight: 700; letter-spacing: -0.01em; }
+
+  p { margin: 0 0 1rem; color: var(--ink-2); }
+  strong { color: var(--ink); font-weight: 600; }
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+
+  .eyebrow {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* ---- header ---- */
+  header { margin-bottom: 3.5rem; }
+  header .lede {
+    font-size: 1.15rem;
+    line-height: 1.55;
+    color: var(--ink-2);
+    max-width: 40rem;
+    margin: 1rem 0 1.6rem;
+  }
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.4rem;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.76rem;
+    color: var(--muted);
+    padding-top: 1rem;
+    border-top: 1px solid var(--hair);
+  }
+  .meta span { white-space: nowrap; }
+
+  /* ---- section scaffolding ---- */
+  section { margin-top: 3.6rem; scroll-margin-top: 1.5rem; }
+  .section-head { margin-bottom: 1.4rem; }
+  .section-head .eyebrow { display: block; margin-bottom: 0.5rem; }
+
+  /* ---- summary callout ---- */
+  .summary {
+    border: 1px solid var(--hair-strong);
+    border-left: 3px solid var(--accent);
+    background: var(--surface);
+    border-radius: 4px;
+    padding: 1.5rem 1.6rem 0.6rem;
+    max-width: var(--maxw-prose);
+  }
+  .summary h2 { font-size: 1.1rem; margin-bottom: 0.8rem; }
+  .summary ul { margin: 0 0 1rem; padding-left: 1.1rem; }
+  .summary li { margin-bottom: 0.55rem; color: var(--ink-2); }
+
+  /* ---- reference site blocks ---- */
+  .ref { max-width: var(--maxw-prose); }
+  .ref-title {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+  .dot {
+    width: 0.6rem; height: 0.6rem; border-radius: 50%;
+    display: inline-block; flex: none;
+    transform: translateY(-1px);
+  }
+  .dot.a { background: var(--mark-a); }
+  .dot.b { background: var(--mark-b); }
+  .domain {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+  .pos {
+    font-size: 1.02rem;
+    color: var(--ink);
+    border-left: 2px solid var(--hair-strong);
+    padding-left: 0.9rem;
+    margin: 1rem 0 1.4rem;
+    font-style: italic;
+  }
+
+  .kv { margin: 1.2rem 0; }
+  .kv dt {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.9rem;
+  }
+  .kv dd { margin: 0.15rem 0 0; color: var(--ink-2); }
+
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1.4rem;
+  }
+  .split > div {
+    background: var(--surface-2);
+    border: 1px solid var(--hair);
+    border-radius: 4px;
+    padding: 0.9rem 1rem 1rem;
+  }
+  .split h3 { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.5rem; }
+  .split.win h3 { color: var(--ok); }
+  .split.lesson h3 { color: var(--accent); }
+  .split ul { margin: 0; padding-left: 1rem; }
+  .split li { font-size: 0.92rem; margin-bottom: 0.4rem; color: var(--ink-2); }
+
+  /* ---- comparison table ---- */
+  .table-scroll {
+    overflow-x: auto;
+    border: 1px solid var(--hair-strong);
+    border-radius: 4px;
+    margin-top: 1.4rem;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 640px;
+    font-size: 0.9rem;
+  }
+  thead th {
+    text-align: left;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 0.75rem 0.9rem;
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--hair-strong);
+    position: sticky;
+    top: 0;
+  }
+  thead th.elli5 { color: var(--accent); }
+  tbody th {
+    text-align: left;
+    font-weight: 600;
+    color: var(--ink);
+    padding: 0.7rem 0.9rem;
+    vertical-align: top;
+    white-space: nowrap;
+  }
+  tbody td {
+    padding: 0.7rem 0.9rem;
+    vertical-align: top;
+    color: var(--ink-2);
+    border-left: 1px solid var(--hair);
+  }
+  tbody tr { border-bottom: 1px solid var(--hair); }
+  tbody tr:last-child { border-bottom: none; }
+  tbody td.elli5 { background: var(--accent-weak); color: var(--ink-2); }
+  tbody tr:nth-child(even) th,
+  tbody tr:nth-child(even) td:not(.elli5) { background: var(--gap-weak); }
+
+  /* ---- status list ---- */
+  .status { max-width: var(--maxw-prose); margin-top: 1.2rem; display: flex; flex-direction: column; }
+  .status-row {
+    display: grid;
+    grid-template-columns: 5.4rem 1fr;
+    gap: 0.9rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--hair);
+    align-items: start;
+  }
+  .status-row:last-child { border-bottom: none; }
+  .chip {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    padding: 0.18rem 0.45rem;
+    border-radius: 3px;
+    text-transform: uppercase;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .chip.ok { background: var(--ok-weak); color: var(--ok); border: 1px solid color-mix(in srgb, var(--ok) 35%, transparent); }
+  .chip.part { background: var(--warn-weak); color: var(--warn); border: 1px solid color-mix(in srgb, var(--warn) 35%, transparent); }
+  .chip.gap { background: var(--accent-weak); color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent); }
+  .status-row p { margin: 0; font-size: 0.94rem; }
+
+  /* ---- recommendations ---- */
+  .recs { max-width: var(--maxw-prose); }
+  .tier { margin-top: 1.6rem; }
+  .tier-head {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 0.7rem;
+  }
+  .prio {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-weight: 600;
+    font-size: 0.78rem;
+    padding: 0.16rem 0.5rem;
+    border-radius: 3px;
+    background: var(--ink);
+    color: var(--ground);
+  }
+  .prio.p0 { background: var(--accent); color: #fff; }
+  .tier-head span { font-size: 0.86rem; color: var(--muted); }
+  .tier ul { margin: 0; padding: 0; list-style: none; }
+  .tier li {
+    padding: 0.62rem 0 0.62rem 1.1rem;
+    border-bottom: 1px solid var(--hair);
+    position: relative;
+    color: var(--ink-2);
+    font-size: 0.95rem;
+  }
+  .tier li:last-child { border-bottom: none; }
+  .tier li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 1.08rem;
+    width: 0.32rem; height: 0.32rem;
+    border-radius: 50%;
+    background: var(--hair-strong);
+  }
+  .tier li strong { color: var(--ink); }
+
+  /* ---- open questions ---- */
+  .q { max-width: var(--maxw-prose); margin-top: 1.2rem; }
+  .q-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--hair);
+  }
+  .q-item:last-child { border-bottom: none; }
+  .q-item h3 { margin-bottom: 0.3rem; }
+  .q-item p { margin: 0; font-size: 0.92rem; color: var(--muted); }
+
+  .foot {
+    margin-top: 4rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--hair);
+    font-size: 0.82rem;
+    color: var(--muted);
+    max-width: var(--maxw-prose);
+  }
+
+  @media (max-width: 640px) {
+    .split { grid-template-columns: 1fr; }
+    .status-row { grid-template-columns: 1fr; gap: 0.35rem; }
+    .chip { justify-self: start; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="prose">
+    <span class="eyebrow">Elli5 · İç analiz</span>
+    <h1>Prismind &amp; Ajans10 Kıyası</h1>
+    <p class="lede">
+      Paylaştığın iki referans ajans sitesinin yapı ve strateji analizi — ve Elli5
+      sitesinin bugün bu ikisine göre nerede durduğu, sırada ne var.
+    </p>
+    <div class="meta">
+      <span>3 Eylül 2026 · v4</span>
+      <span>kaynak: prismindmedia.com</span>
+      <span>kaynak: ajans10.com</span>
+      <span>durum: portfolyo kaldırıldı, logo şeridi + Teklif akışı aktif</span>
+    </div>
+  </header>
+
+  <div class="summary">
+    <h2>Özet</h2>
+    <ul>
+      <li>
+        <strong>Ortak iskelet.</strong> İkisi de aynı akışı kullanıyor: hero + çift CTA →
+        güven/istatistik şeridi → hizmet kartları → SSS → blog → tekrar CTA → zengin footer.
+        Elli5 sitesi bu iskeleti zaten kuruyor.
+      </li>
+      <li>
+        <strong>prismind = geniş kapsam + kendi ürünleri.</strong> "Teknoloji ortağı /
+        laboratuvar" dili, kendi 3 AI ürünü, çok derin hizmet sayfaları (3–4 bin kelime,
+        <em>3 fiyat paketi</em>), 20+ marka / 11+ yıl / 2 ofis.
+      </li>
+      <li>
+        <strong>ajans10 = tek dikeye kilitli.</strong> Sadece "sağlık turizmi". Her satırda
+        bu ifade geçiyor. Lead-generation ve telefon-önce CTA ("Sizi Arayalım"), puan
+        rozetleri (Google/Clutch/Glassdoor), LLM SEO'yu ayrı bir hizmet yapmışlar.
+      </li>
+      <li>
+        <strong>Elli5'in açıkları.</strong> Fiyat şeffaflığı yok, sosyal kanıt yok
+        (puan / logo / yorum), hizmet sayfaları prismind derinliğinde değil, ayrı bir
+        portfolyo bilinçli olarak yok — sosyal kanıt iş ortağı logolarıyla veriliyor.
+      </li>
+    </ul>
+  </div>
+
+  <!-- ================= PRISMIND ================= -->
+  <section id="prismind" class="ref">
+    <div class="section-head">
+      <span class="eyebrow">Referans 1</span>
+      <h2 class="ref-title"><span class="dot a"></span> Prismind Media <span class="domain">prismindmedia.com</span></h2>
+    </div>
+
+    <p class="pos">
+      "Sadece bir ajans değil, markanızı geleceğe taşıyan teknoloji ortağınızız."
+      &nbsp;·&nbsp; "Dijital ürün ve büyüme için bir laboratuvar."
+    </p>
+
+    <dl class="kv">
+      <dt>Navigasyon</dt>
+      <dd>Ana Sayfa · Hizmetler · <strong>Ürünler</strong> · Blog · Hakkımızda · İletişim · <strong>Teklif Alın</strong> (7 madde)</dd>
+
+      <dt>Ana sayfa akışı</dt>
+      <dd>
+        Hero ("markanızın potansiyelini açığa çıkartın" + <em>Hizmetleri Gör / Ürünleri Gör</em>)
+        → 6 hizmet kartı → 3 ürün → "Biz Kimiz?" → blog ("Son İçeriklerimiz") → 3 değer
+        (360° / Ürün odaklı / Büyüme) → footer CTA ("WhatsApp'tan Yaz").
+      </dd>
+
+      <dt>Hizmetler (6)</dt>
+      <dd>Kurumsal Web Tasarım · SEO Danışmanlığı · Sosyal Medya Yönetimi · Sosyal Medya Reklamları · Google Ads Yönetimi · Mobil Uygulama Geliştirme</dd>
+
+      <dt>Kendi ürünleri (3)</dt>
+      <dd>HeyPilot AI Call Center · NovaDesk CRM · LayeredMind AI &nbsp;— müşteri işiyle birlikte kendi SaaS/AI ürünlerini geliştiriyorlar, ana ayrıştırıcıları bu.</dd>
+
+      <dt>Hizmet sayfası derinliği</dt>
+      <dd>
+        ~3.500–4.000 kelime. Hero'da <strong>ön görüşme formu</strong>, iş değeri, hedef kitle (4 segment),
+        seçim kriterleri (3), <strong>01–06 süreç</strong>, <strong>3 fiyat paketi</strong>
+        (MVP / Profesyonel / Kurumsal, ekran sayısı + kapsam ile), 7 soruluk SSS,
+        "Kahveniz bizden" ofis daveti.
+      </dd>
+
+      <dt>Hakkımızda</dt>
+      <dd>DNA (3 sütun) · 4 adım metodoloji · <strong>"Yapmadığımız 6 şey"</strong> · istatistik: 20+ marka, 11+ yıl, 2 ofis (İstanbul + İzmir), 360°.</dd>
+
+      <dt>Tasarım</dt>
+      <dd>Beyaz / #f7f9fc ağırlıklı, tek punch aksan (sarı <code>#feda06</code>), çok yumuşak gölge, birkaç koyu bölüm. Fontlar: Satoshi + Inter + Instrument Serif italic.</dd>
+
+      <dt>Footer</dt>
+      <dd>6 sütun: CTA · hizmet linkleri · 7 blog kategorisi · 2 ofis adresi · telefon/e-posta/sosyal · yasal (Aydınlatma / Çerez / Veri Sahibi Başvuru Formu).</dd>
+    </dl>
+
+    <div class="split">
+      <div class="win">
+        <h3>Güçlü yanları</h3>
+        <ul>
+          <li>Net ayrıştırıcı: "kendi ürünlerini de yapan ajans"</li>
+          <li>Fiyat paketleriyle şeffaflık ve satış filtreleme</li>
+          <li>Derin hizmet sayfaları = SEO + güven</li>
+          <li>"Yapmadığımız 6 şey" — dürüst, akılda kalıcı konumlanma</li>
+          <li>Çoklu güven sinyali: yıl, ofis, marka sayısı</li>
+        </ul>
+      </div>
+      <div class="lesson">
+        <h3>Elli5 için ders</h3>
+        <ul>
+          <li>FitFat'i "Ürünlerimiz" olarak ayrı konumla</li>
+          <li>Hizmet başına ayrı, derin sayfa (tek toplu sayfa yerine)</li>
+          <li>En az bir "bütçe aralığı / paket" mantığı ekle</li>
+          <li>Hakkımızda'ya "yapmadıklarımız" ve sayısal güven ekle</li>
+          <li>Nav'a görünür "Teklif Al" koy</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= AJANS10 ================= -->
+  <section id="ajans10" class="ref">
+    <div class="section-head">
+      <span class="eyebrow">Referans 2</span>
+      <h2 class="ref-title"><span class="dot b"></span> 10 Ajans <span class="domain">ajans10.com</span></h2>
+    </div>
+
+    <p class="pos">
+      "Sağlık Turizminde Mükemmel Standart." &nbsp;·&nbsp; "10'da 10'luk sağlık turizmi
+      pazarlama deneyimi." — sitedeki neredeyse her cümle bu dikeyi tekrar ediyor.
+    </p>
+
+    <dl class="kv">
+      <dt>Navigasyon</dt>
+      <dd>Üst bar (telefon · e-posta · Instagram · LinkedIn) + 10 Ajans Hakkında · Hizmetlerimiz (9 alt madde) · <strong>Araçlarımız</strong> · Blog · İletişim · <em>Toplantı Planla</em></dd>
+
+      <dt>Ana sayfa akışı</dt>
+      <dd>
+        Hero ("Sağlık Turizminde Mükemmel Standart" + 🏆 + <strong>Şimdi Arayın / Sizi Arayalım</strong>)
+        → ajans tanıtım paragrafı → <strong>puanlar 4.8 / 4.4 / 4.9</strong> (Google · Clutch · Glassdoor)
+        → istatistik (Maliyet · Lead Sayısı · Etkileşim %50.78) → 3 animasyonlu hizmet kartı ("Detayları gör")
+        → SSS + <strong>"Aradığınız cevabı bulamadınız mı?" mini formu</strong> → 6 blog → tekrar hero mesajı.
+      </dd>
+
+      <dt>Hizmetler (9)</dt>
+      <dd>Meta Reklamları · Google Reklamları · Web Tasarım · Sosyal Medya Yönetimi · <strong>SEO &amp; LLM SEO</strong> · Tasarım · Fotoğraf &amp; Video · 3D Animasyon &amp; Motion Graphics · <strong>Yapay Zeka Sistemleri</strong></dd>
+
+      <dt>Ayırt edici hamleler</dt>
+      <dd>
+        <strong>Lead generation</strong> vurgusu (her yerde) · telefon-önce CTA ·
+        <strong>LLM SEO / GEO</strong>'yu ayrı hizmet + blog konusu yapmış ("yapay zeka aramalarında
+        görünürlük") · "Araçlarımız" menüsü (şimdilik "yakında").
+      </dd>
+
+      <dt>Sosyal kanıt</dt>
+      <dd>Üçüncü parti puanlar (Google/Clutch/Glassdoor) + müşteri logoları. <em>Yazılı vaka çalışması yok</em>, portfolyo sadece logo bağlantıları.</dd>
+
+      <dt>Zayıf yanları</dt>
+      <dd>Gerçek vaka/çalışma yok · "Araçlarımız" boş · tek şehir (İstanbul) · dikey o kadar dar ki dışına çıkma alanı kalmamış.</dd>
+    </dl>
+
+    <div class="split">
+      <div class="win">
+        <h3>Güçlü yanları</h3>
+        <ul>
+          <li>Aşırı net konumlanma — "X işi için tek adres"</li>
+          <li>Telefon-önce CTA: "Sizi Arayalım" düşük sürtünme</li>
+          <li>Puan rozetleri anında güven veriyor</li>
+          <li>LLM SEO'yu erken ve görünür sahiplenmiş</li>
+          <li>SSS'te ikinci bir dönüşüm noktası (mini form)</li>
+        </ul>
+      </div>
+      <div class="lesson">
+        <h3>Elli5 için ders</h3>
+        <ul>
+          <li>Bir alt-mesaj seç: "yerel işletme dijitalleşmesi" gibi</li>
+          <li>"Sizi Arayalım" formunu dene (telefonlu esnaf kitlesi)</li>
+          <li>Google yorum / puan widget'ı ekle</li>
+          <li>LLM SEO / GEO'yu görünür bir başlık yap</li>
+          <li>SSS bölümüne mini iletişim kutusu koy</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= COMPARISON ================= -->
+  <section id="kiyas">
+    <div class="section-head">
+      <span class="eyebrow">Yan yana</span>
+      <h2>Karşılaştırma</h2>
+    </div>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Boyut</th>
+            <th scope="col">Prismind</th>
+            <th scope="col">Ajans10</th>
+            <th scope="col" class="elli5">Elli5 (şu an)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Konumlandırma</th>
+            <td>Geniş "teknoloji ortağı" + kendi ürünleri</td>
+            <td>Tek dikey: sağlık turizmi</td>
+            <td class="elli5">Geniş: "uçtan uca dijital güç", Samsun merkezli</td>
+          </tr>
+          <tr>
+            <th scope="row">Hedef kitle</th>
+            <td>KOBİ + kurumsal + girişim</td>
+            <td>Klinikler / sağlık turizmi markaları</td>
+            <td class="elli5">Yerel esnaf → ulusal uygulama (geniş)</td>
+          </tr>
+          <tr>
+            <th scope="row">Hizmet sayısı</th>
+            <td>6</td>
+            <td>9</td>
+            <td class="elli5">4</td>
+          </tr>
+          <tr>
+            <th scope="row">Hizmet sayfası</th>
+            <td>Ayrı sayfa · 3–4 bin kelime · form · SSS</td>
+            <td>Ayrı sayfa · orta derinlik</td>
+            <td class="elli5">Tek sayfada 4 anchor bölüm</td>
+          </tr>
+          <tr>
+            <th scope="row">Fiyatlandırma</th>
+            <td>3 paket, ekran/kapsam ile</td>
+            <td>Yok (görüşme)</td>
+            <td class="elli5">Yok</td>
+          </tr>
+          <tr>
+            <th scope="row">Kendi ürünleri</th>
+            <td>3 AI/SaaS ürünü, ana ayrıştırıcı</td>
+            <td>"Araçlarımız" (yakında)</td>
+            <td class="elli5">FitFat — "Ürünlerimiz" sayfası + ana sayfa bölümü</td>
+          </tr>
+          <tr>
+            <th scope="row">Sosyal kanıt</th>
+            <td>20+ marka, 11+ yıl, 2 ofis</td>
+            <td>Puanlar 4.8/4.4/4.9 + logolar</td>
+            <td class="elli5">İş ortağı logo şeridi + yer tutucu istatistikler; puan/yorum yok</td>
+          </tr>
+          <tr>
+            <th scope="row">Portfolyo / vaka</th>
+            <td>Ürün + hizmet vitrini</td>
+            <td>Sadece logo bağlantıları</td>
+            <td class="elli5">Yok (bilinçli) — iş ortağı logoları + kendi ürünü FitFat</td>
+          </tr>
+          <tr>
+            <th scope="row">Blog</th>
+            <td>7 kategori, aktif</td>
+            <td>6 yazı, hepsi dikey odaklı</td>
+            <td class="elli5">3 örnek yazı (iskele)</td>
+          </tr>
+          <tr>
+            <th scope="row">Ana CTA</th>
+            <td>Teklif Al / Hizmetleri Gör</td>
+            <td>Şimdi Arayın / Sizi Arayalım</td>
+            <td class="elli5">Hizmetlerimiz / Ücretsiz Dijital Analiz</td>
+          </tr>
+          <tr>
+            <th scope="row">Teklif akışı</th>
+            <td>Ayrı "Teklif Al" + sayfa içi formlar</td>
+            <td>Telefon + "Sizi Arayalım" + toplantı linki</td>
+            <td class="elli5">İletişim formu + Dijital Analiz formu</td>
+          </tr>
+          <tr>
+            <th scope="row">İletişim kanalları</th>
+            <td>Form · WhatsApp · telefon · e-posta · 2 ofis</td>
+            <td>Telefon · e-posta · toplantı planla · WhatsApp</td>
+            <td class="elli5">Form · WhatsApp · telefon · e-posta · harita</td>
+          </tr>
+          <tr>
+            <th scope="row">AI / LLM SEO</th>
+            <td>AI ürünleri var; LLM SEO ayrı başlık değil</td>
+            <td>LLM SEO / GEO ayrı hizmet + blog</td>
+            <td class="elli5">Yapay Zeka &amp; Öneri Sistemleri hizmeti + koyu bölüm</td>
+          </tr>
+          <tr>
+            <th scope="row">Tasarım dili</th>
+            <td>Beyaz + sarı aksan, yumuşak, serif italik vurgu</td>
+            <td>Koyu + parlak, animasyonlu, emoji</td>
+            <td class="elli5">Beyaz + kırmızı aksan, sade, serif italik vurgu</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ================= ELLI5 STATUS ================= -->
+  <section id="durum">
+    <div class="section-head">
+      <span class="eyebrow">Elli5 sitesi</span>
+      <h2>Bugün nerede duruyoruz</h2>
+    </div>
+    <div class="status">
+      <div class="status-row">
+        <span class="chip ok">Var</span>
+        <p>Kapsamlı çok-sayfalı yapı (8 sayfa), her iki referansın ana akışını içeriyor.</p>
+      </div>
+      <div class="status-row">
+        <span class="chip ok">Var</span>
+        <p>SSS, süreç adımları, değerler, istatistik şeridi, "çalışma prensiplerimiz".</p>
+      </div>
+      <div class="status-row">
+        <span class="chip ok">Var</span>
+        <p>Yapay Zeka &amp; Öneri Sistemleri hem hizmet hem ayrı koyu bölüm olarak öne çıkıyor.</p>
+      </div>
+      <div class="status-row">
+        <span class="chip ok">Var</span>
+        <p>SEO altyapısı: sayfa başına metadata, JSON-LD, sitemap, robots, dinamik OG görseli.</p>
+      </div>
+      <div class="status-row">
+        <span class="chip ok">Var</span>
+        <p>Çoklu iletişim: form, WhatsApp yüzen buton, telefon, e-posta, harita.</p>
+      </div>
+      <div class="status-row">
+        <span class="chip part">Kısmi</span>
+        <p>Hizmet içeriği: 4 hizmet var ama tek sayfada; prismind'in ayrı + derin sayfa modeli yok.</p>
+      </div>
+      <div class="status-row">
+        <span class="chip ok">Var</span>
+        <p><strong>Portfolyo kaldırıldı</strong> (bilinçli) — "Çalışmalarımız" sayfası çıktı; sosyal kanıt iş ortağı logo şeridiyle veriliyor.</p>
+      </div>
+      <div class="status-row">
+        <span class="chip part">Kısmi</span>
+        <p>Blog: yapı ve 3 örnek yazı hazır; gerçek, düzenli içerik ve kategori yok.</p>
+      </div>
+      <div class="status-row">
+        <span class="chip ok">Var</span>
+        <p><strong>Ürün vitrini</strong> — FitFat "Ürünlerimiz" olarak konumlandı: <code>/urunler</code> sayfası + ana sayfa bölümü + nav.</p>
+      </div>
+      <div class="status-row">
+        <span class="chip part">Kısmi</span>
+        <p><strong>Fiyat şeffaflığı</strong> — hizmet sayfalarına "başlangıç bütçesi" eklendi (web 15.000 ₺'den, sosyal medya aylık 15.000 ₺'den, AI 40–150 bin ₺, mobil projeye özel). Paketli seçenekler bekliyor.</p>
+      </div>
+      <div class="status-row">
+        <span class="chip part">Kısmi</span>
+        <p><strong>Sosyal kanıt</strong> — ana sayfaya iş ortağı logo şeridi eklendi (logolar bekleniyor). Google puanı / yazılı referans hâlâ yok.</p>
+      </div>
+      <div class="status-row">
+        <span class="chip ok">Var</span>
+        <p><strong>"Teklif Al" akışı</strong> — <code>/teklif</code> sayfası (bütçe + zamanlama alanlı satış formu) + header'da her zaman görünür "Teklif Al" butonu.</p>
+      </div>
+      <div class="status-row">
+        <span class="chip ok">Var</span>
+        <p><strong>"Sizi arayalım" geri-arama formu</strong> — İletişim ve Teklif sayfalarında tek alanlı (telefon).</p>
+      </div>
+      <div class="status-row">
+        <span class="chip ok">Var</span>
+        <p><strong>SSS mini formu</strong> — akordeon altında "cevabını bulamadınız mı?" hızlı sorusu (ajans10 modeli).</p>
+      </div>
+      <div class="status-row">
+        <span class="chip part">Kısmi</span>
+        <p><strong>Yasal metinler</strong> — KVKK / Gizlilik / Çerez standart Türkçe şablon olarak yazıldı; <code>[köşeli parantez]</code> alanları + hukukçu kontrolü gerekiyor.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= RECOMMENDATIONS ================= -->
+  <section id="oneriler" class="recs">
+    <div class="section-head">
+      <span class="eyebrow">Sıradaki</span>
+      <h2>Öncelikli aksiyonlar</h2>
+    </div>
+
+    <div class="tier">
+      <div class="tier-head"><span class="prio p0">P0</span><span>Yayına almadan önce</span></div>
+      <ul>
+        <li><strong>Gerçek iş ortağı logoları.</strong> <code>/public/clients/</code> + <code>content/site.ts</code>. Şu an 6 temsili logo var — tek sosyal kanıt bu şerit olduğu için gerçek logolar kritik.</li>
+        <li><strong>Gerçek iletişim bilgileri.</strong> <code>content/site.ts</code> içindeki telefon, adres, e-posta, WhatsApp, sosyal linkler.</li>
+        <li><strong>Logo + favicon.</strong> <code>public/logo.svg</code> ve <code>app/icon.svg</code> gerçeğiyle değişecek.</li>
+        <li><strong>Yasal sayfalar.</strong> KVKK / Gizlilik / Çerez — <code>[köşeli parantez]</code> alanları + hukukçu kontrolü.</li>
+        <li><strong>İstatistik rakamları.</strong> <code>content/stats.ts</code> gerçek sayılarla ya da tamamen kaldır.</li>
+      </ul>
+    </div>
+
+    <div class="tier">
+      <div class="tier-head"><span class="prio">P1</span><span>İlk 2 hafta</span></div>
+      <ul>
+        <li><strong>Sosyal kanıt bandı.</strong> Müşteri logoları veya Google yorum widget'ı; varsa puan. Ana sayfada güven şeridinin yerine geçer.</li>
+        <li><strong>"Teklif Al" akışı.</strong> Dijital analizden ayrı, daha net satış niyetli bir sayfa; nav'a buton.</li>
+        <li><strong>Hizmet sayfası derinliği.</strong> Her hizmet için ayrı sayfa (<code>/hizmetler/mobil-uygulama</code> …): hedef kitle + süreç + SSS + sayfa içi form.</li>
+        <li><strong>Fiyat şeffaflığı.</strong> "Başlangıç bütçesi" aralıkları veya prismind gibi 3 kademe paket mantığı.</li>
+        <li><strong>SSS'e mini dönüşüm.</strong> "Cevabını bulamadınız mı?" + tek alanlı hızlı form (ajans10 modeli).</li>
+      </ul>
+    </div>
+
+    <div class="tier">
+      <div class="tier-head"><span class="prio">P2</span><span>Sonra</span></div>
+      <ul>
+        <li><strong>Ürün vitrini.</strong> FitFat'i "Ürünlerimiz" bölümü/sayfası olarak konumla (prismind modeli).</li>
+        <li><strong>LLM SEO / GEO.</strong> "Yapay zeka aramalarında görünürlük" başlığını görünür yap — Web &amp; Google İşletme hizmetinin altında ya da ayrı.</li>
+        <li><strong>"Sizi Arayalım" CTA.</strong> Tek alanlı (telefon) geri-arama formu; telefon kullanan esnaf için.</li>
+        <li><strong>Randevu linki.</strong> "Toplantı Planla" (Cal.com / Calendly) — CTA bandına.</li>
+        <li><strong>Blog programı.</strong> Gerçek içerik, kategori yapısı, ayda 2–4 yazı.</li>
+        <li><strong>Dikey alt-mesaj.</strong> Geniş kalırken bir uzmanlık vurgusu seç: "yerel işletme dijitalleşmesi".</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= DECISIONS ================= -->
+  <section id="kararlar" class="q">
+    <div class="section-head">
+      <span class="eyebrow">3 Eylül · alındı</span>
+      <h2>Alınan kararlar</h2>
+    </div>
+
+    <div class="q-item">
+      <h3>Hizmet bölgesi → Türkiye geneli, yerel vurgu az</h3>
+      <p>Merkez Samsun; hizmet Türkiye geneli (uzaktan). "Vezirköprü", "kreş", "yerel esnaf" vurguları ve "bölgesel esnaftan global uygulamaya" çerçevesi kaldırıldı. JSON-LD <code>areaServed</code> → Türkiye.</p>
+    </div>
+    <div class="q-item">
+      <h3>Portfolyo → kaldırıldı, iş ortağı logoları yeterli</h3>
+      <p>Örnek işler paylaşılmayacak. "Çalışmalarımız" sayfası ve 3 temsili vaka çıkarıldı; sosyal kanıt yalnızca ana sayfadaki iş ortağı logo şeridiyle veriliyor. Kendi ürünü FitFat "Ürünlerimiz"de kalıyor.</p>
+    </div>
+    <div class="q-item">
+      <h3>Fiyat → başlangıç bütçesi aralıkları göster</h3>
+      <p>prismind fiyatları temel alındı: web 15.000 ₺'den, kurumsal 50.000 ₺, sosyal medya aylık 15.000 ₺'den. AI: 40–150 bin ₺. Mobil: projeye özel. Paketli seçenekler ayrıca yapılacak.</p>
+    </div>
+    <div class="q-item">
+      <h3>Konumlandırma → tamamen geniş, hepsi eşit</h3>
+      <p>4 hizmet eşit ağırlıkta, tek "uçtan uca dijital güç" mesajı. Dikey alt-mesaj eklenmeyecek.</p>
+    </div>
+    <div class="q-item">
+      <h3>FitFat → "Ürünlerimiz" olarak konumlandı</h3>
+      <p><code>/urunler</code> sayfası açıldı, ana sayfaya "Ürünlerimiz" bölümü ve nav'a "Ürünler" eklendi. "Yeni ürünler yolda" alanı bırakıldı.</p>
+    </div>
+    <div class="q-item">
+      <h3>İngilizce sürüm → şimdilik yok</h3>
+      <p>Sadece Türkçe. Mimari ileride <code>/en</code> eklemeyi zorlaştırmayacak şekilde tutuluyor.</p>
+    </div>
+  </section>
+
+  <!-- ================= STILL OPEN ================= -->
+  <section class="q">
+    <div class="section-head">
+      <span class="eyebrow">Hâlâ açık</span>
+      <h2>Sıradaki adımlar</h2>
+    </div>
+    <div class="q-item">
+      <h3>Gerçek iş ortağı logoları</h3>
+      <p>SVG/PNG dosyalar; <code>/public/clients/</code> altına konup <code>site.ts</code>'e yazılacak. Portfolyo olmadığı için tek sosyal kanıt bu.</p>
+    </div>
+    <div class="q-item">
+      <h3>Hizmet paketleri</h3>
+      <p>Her hizmet için 2–3 kademe paket (kapsam + fiyat). Sen kapsam/fiyatı ver, tabloyu ben kurarım.</p>
+    </div>
+    <div class="q-item">
+      <h3>Hizmet başına ayrı derin sayfa</h3>
+      <p><code>/hizmetler/&lt;slug&gt;</code> — hedef kitle + süreç + SSS + form (prismind modeli, SEO için).</p>
+    </div>
+    <div class="q-item">
+      <h3>Yasal metinlerin tamamlanması</h3>
+      <p><code>[köşeli parantez]</code> alanları (unvan, adres, MERSIS, KEP, saklama süreleri, tarih) + hukukçu kontrolü.</p>
+    </div>
+    <div class="q-item">
+      <h3>Yayın öncesi yer tutucular</h3>
+      <p>Gerçek iletişim bilgileri, logo/favicon, istatistik rakamları, domain + <code>metadataBase</code>, form endpoint (Formspree/Web3Forms).</p>
+    </div>
+  </section>
+
+  <p class="foot">
+    Bu doküman Elli5 sitesinin iç yön belgesidir. Kaynak siteler 3 Eylül 2026'da incelendi;
+    prismindmedia.com içerikleri sayfa metinlerinden, ajans10.com ham HTML'den çıkarıldı.
+    Referans sitelerin metin ve markaları kendi sahiplerine aittir.
+  </p>
+
+</div>

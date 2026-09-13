@@ -51,7 +51,7 @@ export function SiteFooter() {
 
           <FooterCol title="Hizmetler">
             {services.map((s) => (
-              <FooterLink key={s.id} href={`/hizmetler#${s.id}`}>
+              <FooterLink key={s.id} href={`/hizmetler/${s.id}`}>
                 {s.title}
               </FooterLink>
             ))}
@@ -67,7 +67,7 @@ export function SiteFooter() {
 
           <FooterCol title="İletişim">
             <FooterRow icon={<MapPin className="size-4" />}>
-              {site.contact.addressLine}, {site.contact.city}
+              {[site.contact.addressLine, site.contact.city].filter(Boolean).join(", ")}
             </FooterRow>
             <FooterRow icon={<Phone className="size-4" />}>
               <a href={`tel:${site.contact.phoneHref}`} className="hover:text-white">

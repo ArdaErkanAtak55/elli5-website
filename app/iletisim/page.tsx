@@ -75,9 +75,13 @@ export default function ContactPage() {
                 </a>
               </InfoItem>
               <InfoItem icon={<MapPin className="size-5" />} label="Adres">
-                {site.contact.addressLine}
-                <br />
-                {site.contact.postalCode} {site.contact.city}
+                {site.contact.addressLine ? (
+                  <>
+                    {site.contact.addressLine}
+                    <br />
+                  </>
+                ) : null}
+                {[site.contact.postalCode, site.contact.city].filter(Boolean).join(" ")}
               </InfoItem>
               <InfoItem icon={<Clock className="size-5" />} label="Çalışma saatleri">
                 {site.contact.hours}
@@ -131,7 +135,7 @@ export default function ContactPage() {
                 subject="Elli5 — İletişim formu"
                 fields={fields}
                 submitLabel="Talebi gönder"
-                note="Şu an form, mesajı e-posta uygulamanızla iletir. Gönderemezseniz doğrudan info@elli5.com.tr adresine yazabilirsiniz."
+                note={`Şu an form, mesajı e-posta uygulamanızla iletir. Gönderemezseniz doğrudan ${site.contact.email} adresine yazabilirsiniz.`}
               />
             </div>
           </div>

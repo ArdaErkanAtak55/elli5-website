@@ -45,6 +45,17 @@ export function pageMetadata({
 
 /* ----------------------------- JSON-LD ----------------------------- */
 
+/** Sokak adresi / posta kodu yoksa (fiziksel ofis yok) şemadan boş alan olarak sızmasın. */
+function postalAddressJsonLd() {
+  return {
+    "@type": "PostalAddress",
+    ...(site.contact.addressLine ? { streetAddress: site.contact.addressLine } : {}),
+    addressLocality: site.contact.city,
+    ...(site.contact.postalCode ? { postalCode: site.contact.postalCode } : {}),
+    addressCountry: site.contact.country,
+  };
+}
+
 export function organizationJsonLd() {
   return {
     "@context": "https://schema.org",
@@ -54,13 +65,7 @@ export function organizationJsonLd() {
     url: site.url,
     description: site.description,
     email: site.contact.email,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: site.contact.addressLine,
-      addressLocality: site.contact.city,
-      postalCode: site.contact.postalCode,
-      addressCountry: site.contact.country,
-    },
+    address: postalAddressJsonLd(),
     sameAs: Object.values(site.social).filter(Boolean),
   };
 }
@@ -75,13 +80,7 @@ export function localBusinessJsonLd() {
     telephone: site.contact.phoneDisplay,
     email: site.contact.email,
     priceRange: "₺₺",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: site.contact.addressLine,
-      addressLocality: site.contact.city,
-      postalCode: site.contact.postalCode,
-      addressCountry: site.contact.country,
-    },
+    address: postalAddressJsonLd(),
     areaServed: { "@type": "Country", name: site.areaServed },
     sameAs: Object.values(site.social).filter(Boolean),
   };

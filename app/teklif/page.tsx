@@ -6,6 +6,7 @@ import { LeadForm, type Field } from "@/components/forms/lead-form";
 import { CallbackForm } from "@/components/forms/callback-form";
 import { pageMetadata, breadcrumbJsonLd } from "@/lib/seo";
 import { services } from "@/content/services";
+import { site } from "@/content/site";
 
 export const metadata: Metadata = pageMetadata({
   title: "Teklif Al",
@@ -123,7 +124,7 @@ export default function QuotePage() {
                 subject="Elli5 — Teklif talebi"
                 fields={fields}
                 submitLabel="Teklif iste"
-                note="Şu an form, bilgileri e-posta uygulamanızla iletir. Gönderemezseniz doğrudan info@elli5.com.tr adresine yazabilirsiniz."
+                note={`Şu an form, bilgileri e-posta uygulamanızla iletir. Gönderemezseniz doğrudan ${site.contact.email} adresine yazabilirsiniz.`}
               />
             </div>
           </Reveal>

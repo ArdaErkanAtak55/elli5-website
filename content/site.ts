@@ -16,26 +16,28 @@ export const site = {
   locale: "tr_TR",
   region: "Türkiye",
 
-  /* ---- İletişim (YER TUTUCU — güncelle) ---- */
+  /* ---- İletişim ---- */
   contact: {
-    email: "info@elli5.com.tr",
-    phoneDisplay: "+90 (500) 000 00 00",
-    phoneHref: "+905000000000",
-    whatsapp: "905000000000", // wa.me/<numara>
-    addressLine: "Örnek Mah. Örnek Cad. No: 5",
-    city: "İlkadım / Samsun",
-    postalCode: "55000",
+    email: "elli5dijital@gmail.com",
+    /* Telefon geçici — kalıcı numara belirlenince güncelle. */
+    phoneDisplay: "+90 542 688 26 93",
+    phoneHref: "+905426882693",
+    whatsapp: "905426882693", // wa.me/<numara>
+    /* Fiziksel ofis yok — sokak adresi ve posta kodu bilerek boş bırakıldı. */
+    addressLine: "",
+    city: "Vezirköprü / Samsun",
+    postalCode: "",
     country: "TR",
     hours: "Hafta içi 09:00 – 18:00",
-    mapQuery: "Samsun",
+    mapQuery: "Vezirköprü, Samsun",
   },
 
-  /* ---- Sosyal medya (YER TUTUCU — güncelle veya boş bırak) ---- */
+  /* ---- Sosyal medya (boş olanlar otomatik gizlenir) ---- */
   social: {
-    instagram: "https://instagram.com/",
-    linkedin: "https://www.linkedin.com/",
-    x: "https://x.com/",
-    youtube: "https://www.youtube.com/",
+    instagram: "https://www.instagram.com/elli5dijital/",
+    linkedin: "",
+    x: "",
+    youtube: "",
   },
 
   /* Hizmet verilen bölge — merkez Samsun, hizmet Türkiye geneli (uzaktan) */

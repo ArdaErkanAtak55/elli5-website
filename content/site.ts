@@ -64,9 +64,9 @@ export const site = {
    logo alanına yolunu yaz. logo boş bırakılırsa isim rozeti gösterilir (bkz. ClientLogos).
    Diziyi boşaltırsan şerit gizlenir. */
 export const clients: { name: string; logo: string }[] = [
-  { name: "Saim Usta Pide ve Lahmacun", logo: "" },
-  { name: "Ateş Kardeşler Restoran ve Fırın", logo: "" },
-  { name: "FitFat", logo: "" },
+  { name: "Saim Usta Pide ve Lahmacun", logo: "/clients/saim-usta.jpg" },
+  { name: "Ateş Kardeşler Restoran ve Fırın", logo: "/clients/ates-kardesler.jpg" },
+  { name: "FitFat", logo: "/clients/fitfat.png" },
 ];
 
 export type NavItem = {

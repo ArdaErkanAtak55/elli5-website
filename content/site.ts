@@ -62,11 +62,12 @@ export const site = {
 /* ---- İş ortakları / müşteri logoları ----
    Logo dosyası hazır olan müşteriler için /public/clients/ altına SVG/PNG ekleyip
    logo alanına yolunu yaz. logo boş bırakılırsa isim rozeti gösterilir (bkz. ClientLogos).
-   Diziyi boşaltırsan şerit gizlenir. */
+   Diziyi boşaltırsan şerit gizlenir — şu an bilerek boş (şeridi geçici olarak kaldırdık).
+   Geri açmak için aşağıdaki satırların yorumunu kaldır. */
 export const clients: { name: string; logo: string }[] = [
-  { name: "Saim Usta Pide ve Lahmacun", logo: "/clients/saim-usta.jpg" },
-  { name: "Ateş Kardeşler Restoran ve Fırın", logo: "/clients/ates-kardesler.jpg" },
-  { name: "FitFat", logo: "/clients/fitfat.png" },
+  // { name: "Saim Usta Pide ve Lahmacun", logo: "/clients/saim-usta.jpg" },
+  // { name: "Ateş Kardeşler Restoran ve Fırın", logo: "/clients/ates-kardesler.jpg" },
+  // { name: "FitFat", logo: "/clients/fitfat.png" },
 ];
 
 export type NavItem = {

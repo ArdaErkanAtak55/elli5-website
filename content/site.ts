@@ -54,8 +54,8 @@ export const site = {
   logo: {
     src: "/logo/elli5.svg",
     srcDark: "/logo/elli5-beyaz.svg",
-    width: 388,
-    height: 200,
+    width: 839,
+    height: 311,
   },
 } as const;
 

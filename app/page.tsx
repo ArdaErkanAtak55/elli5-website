@@ -3,7 +3,6 @@ import { ClientLogos } from "@/components/sections/client-logos";
 import { ServicesGrid } from "@/components/sections/services-grid";
 import { WhyElli5 } from "@/components/sections/why-elli5";
 import { ProcessSteps } from "@/components/sections/process-steps";
-import { StatsBand } from "@/components/sections/stats-band";
 import { AiSpotlight } from "@/components/sections/ai-spotlight";
 import { FaqSection } from "@/components/sections/faq-section";
 import { BlogTeaser } from "@/components/sections/blog-teaser";
@@ -27,7 +26,6 @@ export default function HomePage() {
       <ServicesGrid />
       <WhyElli5 />
       <ProcessSteps />
-      <StatsBand />
       <AiSpotlight />
       <FaqSection />
       <BlogTeaser />

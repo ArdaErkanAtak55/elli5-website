@@ -1,14 +1,3 @@
-/* Elli5 — İstatistik şeridi. YER TUTUCU rakamlar — gerçek verilerle değiştir. */
-
-export type Stat = { value: string; label: string };
-
-export const stats: Stat[] = [
-  { value: "20+", label: "Tamamlanan dijital proje" },
-  { value: "6", label: "Farklı sektör" },
-  { value: "4", label: "Ana hizmet alanı" },
-  { value: "%100", label: "Kod ve hesap sahipliği müşteride" },
-];
-
 /* "Neden Elli5" değer önerileri */
 export type Value = {
   icon: "layers" | "compass" | "line-chart" | "cpu";

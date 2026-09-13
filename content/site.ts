@@ -60,16 +60,13 @@ export const site = {
 } as const;
 
 /* ---- İş ortakları / müşteri logoları ----
-   ŞU AN: yapıyı test etmek için TEMSİLİ (uydurma) logolar. Yayına almadan
-   /public/clients/ içindekileri gerçek logolarla değiştir, aşağıda name + logo güncelle.
-   logo alanı boş bırakılırsa isim rozeti gösterilir. Diziyi boşaltırsan şerit gizlenir. */
+   Logo dosyası hazır olan müşteriler için /public/clients/ altına SVG/PNG ekleyip
+   logo alanına yolunu yaz. logo boş bırakılırsa isim rozeti gösterilir (bkz. ClientLogos).
+   Diziyi boşaltırsan şerit gizlenir. */
 export const clients: { name: string; logo: string }[] = [
-  { name: "Meridyen Yapı", logo: "/clients/meridyen-yapi.svg" },
-  { name: "Bereket Fırın", logo: "/clients/bereket-firin.svg" },
-  { name: "Atlas Klinik", logo: "/clients/atlas-klinik.svg" },
-  { name: "Nova Studyo", logo: "/clients/nova-studyo.svg" },
-  { name: "Deniz Lojistik", logo: "/clients/deniz-lojistik.svg" },
-  { name: "Kıvılcım Kafe", logo: "/clients/kivilcim-kafe.svg" },
+  { name: "Saim Usta Pide ve Lahmacun", logo: "" },
+  { name: "Ateş Kardeşler Restoran ve Fırın", logo: "" },
+  { name: "FitFat", logo: "" },
 ];
 
 export type NavItem = {

@@ -56,7 +56,7 @@ export function AiSpotlight() {
       </div>
 
       <Link
-        href="/hizmetler#yapay-zeka"
+        href="/hizmetler/yapay-zeka"
         className="relative mt-9 inline-flex items-center gap-1.5 text-sm font-semibold text-turq hover:text-white"
       >
         Yapay zeka hizmetimizi inceleyin
